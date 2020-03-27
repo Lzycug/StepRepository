@@ -1,0 +1,25 @@
+#spring配置
+spring:
+  #切面启用
+  aop:
+    proxy-target-class: true
+    auto: true
+
+
+  mail:
+    host: smtp.126.com
+    post: 25
+    username: lzycug
+    password: LBQJOVBCBXPASRUW
+    default-encoding: UTF-8
+    properties:
+      mail:
+        debug: true
+        smtp:
+          socketFactoryClass: javax.net.ssl.SSLSocketFactory
+
+  datasource:
+    url: jdbc:mysql://47.98.175.65:3306/information_collec?useUnicode=true&characterEncoding=utf8
+    driverClassName: com.mysql.jdbc.Driver
+    username: lzy
+    password: 123456

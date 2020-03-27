@@ -1,6 +1,7 @@
 
 package com.lzycug.mail.service;
 
+import com.lzycug.mail.config.SystemServiceLog;
 import com.lzycug.mail.pojo.User;
 
 import freemarker.template.Configuration;
@@ -15,8 +16,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.StringWriter;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.mail.MessagingException;
@@ -33,6 +32,7 @@ public class MailService {
     @Autowired
     JavaMailSender javaMailSender;
 
+    @SystemServiceLog
     public void sendTextMail(String recipient, String subject, String message) {
         // 1.构建一个邮件对象
         SimpleMailMessage mailMessage = new SimpleMailMessage();
@@ -77,24 +77,5 @@ public class MailService {
         template.process(user, out);
         helper.setText(out.toString(), true);
         javaMailSender.send(mimeMessage);
-    }
-
-    public static void main(String[] args) throws Exception {
-        // 构建 Freemarker 的基本配置
-        Configuration configuration = new Configuration(Configuration.VERSION_2_3_0);
-        // 配置模板位置
-        ClassLoader loader = MailService.class.getClassLoader();
-        configuration.setClassLoaderForTemplateLoading(loader, "templates");
-        // 加载模板
-        Template template = configuration.getTemplate("mail.ftl");
-        User user = new User();
-        user.setUserName("javaboy");
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        user.setHireTime(dateFormat.format(new Date()));
-        user.setSalary(99999);
-        StringWriter out = new StringWriter();
-        // 模板渲染，渲染的结果将被保存到 out 中 ，将out 中的 html 字符串发送即可
-        template.process(user, out);
-        System.out.println(out.toString());
     }
 }

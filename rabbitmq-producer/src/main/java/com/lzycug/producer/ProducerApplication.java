@@ -1,16 +1,14 @@
 
-package com.lzycug.mail;
+package com.lzycug.producer;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.lzycug.mail.dao")
-public class MailApplication {
+public class ProducerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MailApplication.class, args);
+        SpringApplication.run(ProducerApplication.class, args);
     }
 
 }
