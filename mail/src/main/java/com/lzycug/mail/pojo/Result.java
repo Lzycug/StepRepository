@@ -1,31 +1,83 @@
 
 package com.lzycug.mail.pojo;
 
+import java.io.Serializable;
+
 /**
  * 功能描述
  *
- * @author lWX716128
+ * @author lzycug
+ * @param <T>
  * @since 2020-03-24
  */
-public enum Result {
-    SUCCESS("发送成功", 200),
+public class Result<T> implements Serializable {
+    private static final long serialVersionUID = -7264375751490927423L;
 
-    ERROR("发送失败", 300);
+    private String code = "0";
 
-    private String message;
+    private String msg;
 
-    private int code;
+    private transient T data;
 
-    Result(String message, int code) {
-        this.message = message;
+    public <T> Result() {
+    }
+
+    public Result(String code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
+    public Result(String code, String msg, T data) {
+        this.code = code;
+        this.msg = msg;
+        this.data = data;
+    }
+
+    public static Result ok() {
+        return new Result(ResultCode.OK.getCode(), ResultCode.OK.getMsg());
+    }
+
+    public static <T> Result ok(T data) {
+        return new Result(ResultCode.OK.getCode(), ResultCode.OK.getMsg(), data);
+    }
+
+    public static Result error() {
+        return new Result(ResultCode.ERROR.getCode(), ResultCode.ERROR.getMsg());
+    }
+
+    public static Result error(String code) {
+        return new Result(code, ResultCode.getMsgByCode(code));
+    }
+
+    public static Result error(String code, String msg) {
+        return new Result(code, msg);
+    }
+
+    public static <T> Result error(String code, T data) {
+        return new Result(code, ResultCode.getMsgByCode(code), data);
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
         this.code = code;
     }
 
-    public String getMessage() {
-        return message;
+    public String getMsg() {
+        return msg;
     }
 
-    public int getCode() {
-        return code;
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
     }
 }

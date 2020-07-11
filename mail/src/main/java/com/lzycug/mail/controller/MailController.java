@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * 功能描述
  *
- * @author lWX716128
+ * @author lzycug
  * @since 2020-03-24
  */
 @RestController
@@ -25,7 +25,7 @@ public class MailController {
     @PostMapping("sendText")
     public Result sendTextMail(String recipient, String subject, String message) {
         mailService.sendTextMail(recipient, subject, message);
-        return Result.SUCCESS;
+        return Result.ok();
     }
 
     @PostMapping("sendFreemarkerMail")
@@ -34,8 +34,8 @@ public class MailController {
             mailService.sendFreemarkerMail(recipient, subject, user);
         } catch (Exception e) {
             e.printStackTrace();
-            return Result.ERROR;
+            return Result.error();
         }
-        return Result.SUCCESS;
+        return Result.ok();
     }
 }
