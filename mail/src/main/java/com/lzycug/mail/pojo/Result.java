@@ -4,19 +4,28 @@ package com.lzycug.mail.pojo;
 import java.io.Serializable;
 
 /**
- * 功能描述
+ * 后台返回前端数据对象
  *
  * @author lzycug
  * @param <T>
- * @since 2020-03-24
+ * @since 2020-07-11
  */
 public class Result<T> implements Serializable {
     private static final long serialVersionUID = -7264375751490927423L;
 
+    /**
+     * 状态码
+     */
     private String code = "0";
 
+    /**
+     * 信息
+     */
     private String msg;
 
+    /**
+     * 返回数据
+     */
     private transient T data;
 
     public <T> Result() {

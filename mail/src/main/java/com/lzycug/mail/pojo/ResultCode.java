@@ -1,13 +1,10 @@
-/*
- * Copyright (c) Lizhiyang  xi'an China. 2020-2020. All rights reserved.
- */
 
 package com.lzycug.mail.pojo;
 
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * 功能描述
+ * 返回结果枚举对象
  *
  * @author lzycug
  * @since 2020-07-11
@@ -27,6 +24,12 @@ enum ResultCode {
         this.msg = msg;
     }
 
+    /**
+     * 根据code值获取对应的消息
+     *
+     * @param code 状态码
+     * @return 消息
+     */
     public static String getMsgByCode(String code) {
         String msg = StringUtils.EMPTY;
         ResultCode[] resultCodes = values();
