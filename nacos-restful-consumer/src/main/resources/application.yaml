@@ -1,0 +1,25 @@
+server:
+  port: 56020
+
+provider:
+  address: 127.0.0.1:56010
+
+spring:
+  application:
+    name: nacos-restful-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 47.98.175.65:8848 #注册中心地址
+
+# ribbon 配置方式实现细粒度配置
+# com.netflix.loadbalancer.RoundRobinRule 轮询（默认）
+# com.netflix.loadbalancer.RandomRule 随机策略
+# com.netflix.loadbalancer.AvailabilityFilteringRule 先过滤多次访问故障以及并发连接数超过阈值的服务之后按列表轮询
+# com.netflix.loadbalancer.WeightedResponseTimeRule 根据平均响应时间分配权重后按权重随机
+# com.netflix.loadbalancer.RetryRule 先轮询，如果失败在一定时间内重试获取可用服务
+# com.netflix.loadbalancer.BestAvailableRule 先过滤多次访问故障服务在选择一个并发量最小的服务
+# com.netflix.loadbalancer.ZoneAvoidanceRule 复合判断server所在区域的性能和server的可用性选择服务器
+nacos-restful-provider:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule # 随机策略

@@ -1,0 +1,10 @@
+server:
+  port: 56010
+
+spring:
+  application:
+    name: nacos-restful-provider
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 47.98.175.65:8848 #×¢²áÖÐÐÄµØÖ·
