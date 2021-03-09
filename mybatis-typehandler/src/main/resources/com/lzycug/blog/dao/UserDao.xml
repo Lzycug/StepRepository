@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lzycug.blog.dao.UserDao">
+    <resultMap id="userMap" type="com.lzycug.blog.pojo.User">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="age" property="age"></result>
+        <result column="address" property="address"></result>
+        <result column="hobbies" property="hobbies" typeHandler="com.lzycug.blog.handler.ListToVarcharTypeHandler"></result>
+    </resultMap>
+
+    <insert id="addUser" parameterType="com.lzycug.blog.pojo.User">
+        INSERT INTO t_user (name, age, address, hobbies) VALUES (#{name}, #{age}, #{address}, #{hobbies,typeHandler=com.lzycug.blog.handler.ListToVarcharTypeHandler})
+    </insert>
+
+    <select id="getAllUser" resultMap="userMap">
+        SELECT id, name, age, address, hobbies FROM t_user
+    </select>
+</mapper>
